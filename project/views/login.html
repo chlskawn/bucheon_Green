@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>여행가자</title>
+</head>
+<body>
+    <header>
+        <h2 class="logo">logo</h2>
+        <nav class="navigation">
+        <a href="dashboard.html">Dashborad</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <button class="btnLogin-popup">Login</button>
+        </nav>
+    </header>
+    
+    <div class="wrapper">
+        <span class="icon-close">
+            <ion-icon name="close-outline"></ion-icon>
+        </span>
+
+        <div class="form-box Login">
+            <h2>Login</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                <label><input type="checkbox">로그인 상태 유지</label>
+                <a href="#">계정 찾기</a>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div class="Login-register">
+                <p>계정이 없으신가요?<a href="#" class="register-link">회원가입</a></p>
+            </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <h2>회원가입</h2>
+            <form action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person">
+                    </ion-icon>
+                    </span>
+                    <input type="text" required>
+                    <label>이름</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                <label><input type="checkbox">계정 생성에 동의 하십니까?</label>
+            </div>
+            <button type="submit" class="btn">계정 생성</button>
+            <div class="login-register">
+                <p>이미 계정이 있으신가요?<a href="#" class="Login-link">Login</a></p>
+            </div>
+            </form>
+        </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
