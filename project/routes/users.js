@@ -1,11 +1,11 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require('../schemas/user');
-const Comment = require('../schemas/comment');
 
 const router = express.Router();
 
-router.route('/')
-  .get(async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
       const users = await User.find({});
       res.json(users);
@@ -14,31 +14,21 @@ router.route('/')
       next(err);
     }
   })
-  .post(async (req, res, next) => {
+  router.post('/', async (req, res) => {
+    const { email, password} = req.body;
     try {
-      const user = await User.create({
-        name: req.body.name,
-        age: req.body.age,
-        married: req.body.married,
-      });
-      console.log(user);
-      res.status(201).json(user);
+      const user = await User.findOne({email});
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+        return res.status(401).json({message: '이메일 또는 비밀번호가 올바르지 않습니다.'});
+    }
+    const token = jwt.sign({userId: user._id}, 'secret_key', {expiresIn: '1h'});
+    res.status(200).json({token});
     } catch (err) {
       console.error(err);
-      next(err);
+      res.status(500).send('로그인에 실패했습니다.');
     }
   });
 
-router.get('/:id/comments', async (req, res, next) => {
-  try {
-    const comments = await Comment.find({ commenter: req.params.id })
-      .populate('commenter');
-    console.log(comments);
-    res.json(comments);
-  } catch (err) {
-    console.error(err);
-    next(err);
-  }
-});
+
 
 module.exports = router;

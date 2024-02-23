@@ -1,12 +1,15 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-const nunjucks = require('nunjucks')
-
+const nunjucks = require('nunjucks');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const User = require('./schemas/user');
 const connect = require('./schemas');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const commentsRouter = require('./routes/comments');
+const registersRouter = require('./routes/registers')
+const bodyParser = require('body-parser');
 
 const app = express();
 app.set('port', process.env.PORT || 4000);
@@ -21,13 +24,18 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/comments', commentsRouter);
+app.use('/registers', registersRouter);
+app.use('/chats', chatsRouter);
+app.use('/moneys', moneysRouter);
+app.use('/schedule', schedulesRouter);
+app.use('/posts', postsRouter);
 
 app.use((req, res, next) => {
-  const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
+  const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
   error.status = 404;
   next(error);
 });

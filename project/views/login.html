@@ -11,9 +11,6 @@
         <h2 class="logo">logo</h2>
         <nav class="navigation">
         <a href="dashboard.html">Dashborad</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
         <button class="btnLogin-popup">Login</button>
         </nav>
     </header>
@@ -25,7 +22,7 @@
 
         <div class="form-box Login">
             <h2>Login</h2>
-            <form action="#">
+            <form action="/users" method="POST">
                 <div class="input-box">
                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
                     <input type="email" required>
@@ -49,7 +46,7 @@
 
         <div class="form-box register">
             <h2>회원가입</h2>
-            <form action="#">
+            <form action="/registers" method="POST">
                 <div class="input-box">
                     <span class="icon"><ion-icon name="person">
                     </ion-icon>
@@ -70,7 +67,7 @@
                 <div class="remember-forgot">
                 <label><input type="checkbox">계정 생성에 동의 하십니까?</label>
             </div>
-            <button type="submit" class="btn">계정 생성</button>
+            <button type="submit" class="btn" id="createAccountBtn">계정 생성</button>
             <div class="login-register">
                 <p>이미 계정이 있으신가요?<a href="#" class="Login-link">Login</a></p>
             </div>
