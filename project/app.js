@@ -9,6 +9,7 @@ const connect = require('./schemas');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const registersRouter = require('./routes/registers')
+const chatsRouter = require('./routes/chats')
 const bodyParser = require('body-parser');
 
 const app = express();

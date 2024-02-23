@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/chats', (req, res) => {
+router.get('/chats', (req, res, next) => {
     res.send('채팅 목록을 가져옵니다.');
 });
 

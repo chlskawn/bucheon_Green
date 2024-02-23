@@ -1,0 +1,25 @@
+// controllers/commentController.js
+const Comment = require('../schemas/Exercise');
+
+exports.createComment = async (req, res) => {
+    try {
+        const { postId, text } = req.body;
+        const comment = new Comment({ postId, text });
+        await comment.save();
+        res.status(201).json({ message: '코멘트가 추가되었습니다.' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: '코멘트 추가 중 오류가 발생했습니다.' });
+    }
+};
+
+exports.getCommentsByPostId = async (req, res) => {
+    try {
+        const postId = req.params.postId;
+        const comments = await Comment.find({ postId });
+        res.json(comments);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: '코멘트 조회 중 오류가 발생했습니다.' });
+    }
+};
